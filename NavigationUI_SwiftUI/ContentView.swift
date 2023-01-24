@@ -32,6 +32,17 @@ struct ContentView: View {
                         Restaurant(name: "Royal Oak", image: "royaloak"),
                         Restaurant(name: "CASK Pub and Kitchen", image: "caskpubkitchen")
     ]
+    init() {
+        let navBarAppearance = UINavigationBarAppearance() // NavigationBarAppearance API Customize Navigation Bar View.
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor : UIColor.systemRed, .font : UIFont(name: "ArialRoundedMTBold", size: 35)!]
+        navBarAppearance.titleTextAttributes = [.foregroundColor : UIColor.systemBlue, .font : UIFont(name: "ArialRoundedMTBold", size: 20)!]
+        navBarAppearance.setBackIndicatorImage(UIImage(systemName: "arrow.turn.up.left"), transitionMaskImage: UIImage(systemName: "arrow.turn.up.left")) // Change Back Button Image.
+        UINavigationBar.appearance().tintColor = .black
+        // Change Back Button Color.
+        UINavigationBar.appearance().standardAppearance = navBarAppearance // Appearance of standard-Height Navigation Bar.
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance // Appearance when the edge of the scrolled content reaches the navigation Bar.
+        UINavigationBar.appearance().compactAppearance = navBarAppearance //Appearance of compact height Navigation Bar.
+    }
     
     var body: some View {
         NavigationView
@@ -46,7 +57,7 @@ struct ContentView: View {
                         })
                 }
             }
-            .navigationBarTitle("Restaurants",displayMode: .inline)
+            .navigationBarTitle("Restaurants",displayMode: NavigationBarItem.TitleDisplayMode.automatic)
             // Display Mode change view of navigation Bar.
             
         }
