@@ -46,7 +46,8 @@ struct ContentView: View {
                         })
                 }
             }
-            .navigationBarTitle("Restaurants")
+            .navigationBarTitle("Restaurants",displayMode: .inline)
+            // Display Mode change view of navigation Bar.
             
         }
     }
