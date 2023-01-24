@@ -34,15 +34,20 @@ struct ContentView: View {
     ]
     
     var body: some View {
-    // Add Navigation View.
         NavigationView
         {
             List {
                 ForEach(restaurants) { restaurant in
-                    BasicImageRow(restaurant: restaurant)
+                    //Navigation Link is a Special button detect User's touch and triggers the Navigation Presentation.
+                    NavigationLink(
+                        destination: RestautantDetailView(restaurant: restaurant), // Specify Destination view in Destination Paramater.
+                        label: {
+                            BasicImageRow(restaurant: restaurant) // Implement Cell view in the closure
+                        })
                 }
             }
             .navigationBarTitle("Restaurants")
+            
         }
     }
 }
@@ -69,6 +74,24 @@ struct BasicImageRow: View {
                 .frame(width: 40, height: 40)
                 .cornerRadius(5)
             Text(restaurant.name)
+        }
+    }
+}
+
+struct RestautantDetailView : View {
+    var restaurant : Restaurant
+    var body: some View {
+        VStack {
+            Image(restaurant.image)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: .infinity, height: 300, alignment: .center)
+                .clipped()
+                .padding(.horizontal)
+            Text(restaurant.name)
+                .font(.system(.title, design: .rounded))
+                .fontWeight(.black)
+            Spacer()
         }
     }
 }
