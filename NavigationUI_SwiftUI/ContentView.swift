@@ -34,10 +34,15 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        List {
-            ForEach(restaurants) { restaurant in
-                BasicImageRow(restaurant: restaurant)
+    // Add Navigation View.
+        NavigationView
+        {
+            List {
+                ForEach(restaurants) { restaurant in
+                    BasicImageRow(restaurant: restaurant)
+                }
             }
+            .navigationBarTitle("Restaurants")
         }
     }
 }
