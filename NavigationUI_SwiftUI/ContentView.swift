@@ -75,6 +75,7 @@ struct ArticleRow: View {
 
 struct ArticleDetails: View {
     var article: Article
+    @Environment(\.presentationMode) var PresentaionMode // reveal the current Presentation mode of the view.
     var body: some View {
         ScrollView {
             VStack(alignment:.leading) {
@@ -100,6 +101,16 @@ struct ArticleDetails: View {
             }
             
         }
-            .navigationBarTitle("", displayMode: .inline) // Remove Empty Space in Header.
+        //Customize Back Button.
+        .edgesIgnoringSafeArea(.top) // Ignore Safe Area.
+        .navigationBarBackButtonHidden(true) // Hide Back Button
+        //Add Nav Bar Item. to Create Customize Back Button.
+        .navigationBarItems(leading: Button(action: {
+            PresentaionMode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "chevron.left.circle.fill")
+                .font(.largeTitle)
+                .foregroundColor(.white)
+        }))
     }
 }
