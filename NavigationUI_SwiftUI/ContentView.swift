@@ -11,13 +11,18 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        
-        List(articles) { article in
+        NavigationView {
+            List(articles) { article in
+                NavigationLink(
+                    destination:
+                    ArticleDetails(article: article),
+                    label: {
+                    ArticleRow(article: article)
+                    })
                 
-            ArticleRow(article: article)
-                
+            }
+            .navigationTitle("Your Reading")
         }
- 
     }
 }
 
@@ -65,3 +70,32 @@ struct ArticleRow: View {
     }
 }
 
+struct ArticleDetails: View {
+    var article: Article
+    var body: some View {
+        ScrollView {
+            VStack(alignment:.leading) {
+                Image(article.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Group{ // Group Modifier Allow Apply certain Configuration on multiple views.
+                    Text(article.title)
+                        .font(.system(.title, design: .rounded))
+                        .fontWeight(.black)
+                        .lineLimit(3)
+                    Text("By \(article.author)".uppercased())
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.horizontal)
+                .padding(.bottom,0)// Spacing Between Title and author
+                Text(article.content)
+                    .font(.body)
+                    .padding()
+                    .lineLimit(.max)
+                    .multilineTextAlignment(.leading)
+            }
+            
+        }
+    }
+}
