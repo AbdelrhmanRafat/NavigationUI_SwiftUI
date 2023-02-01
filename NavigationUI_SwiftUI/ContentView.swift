@@ -100,5 +100,6 @@ struct ArticleDetails: View {
             }
             
         }
+            .navigationBarTitle("", displayMode: .inline) // Remove Empty Space in Header.
     }
 }
