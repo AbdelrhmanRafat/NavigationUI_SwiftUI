@@ -13,12 +13,15 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(articles) { article in
-                NavigationLink(
-                    destination:
-                    ArticleDetails(article: article),
-                    label: {
+                ZStack {
                     ArticleRow(article: article)
+                    NavigationLink(
+                        destination:
+                        ArticleDetails(article: article),
+                        label: {
+                            EmptyView()
                     })
+                }
                 
             }
             .navigationTitle("Your Reading")
